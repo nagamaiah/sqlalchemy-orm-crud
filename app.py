@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import declarative_base, sessionmaker
+import sys
 
 # SQLite database connection
 engine = create_engine('sqlite:///my_sqlite_database.db', echo=True)
@@ -62,8 +63,15 @@ def delete_user(user_id: int):
     return user
 
 # Example usage (uncomment to test)
-new_user = create_user("Alice", "alice@example.com")
-print(get_user(new_user.id))
-# print(get_all_users())
-# update_user(new_user.id, name="Alice Smith")
-#
+# new_user = create_user("lessa", "lessa@example.com")
+# print(f"Created user id is {get_user(new_user.id).id}")
+
+# update_user(4, name="Nags", email="test12@gmail.com")
+
+# delete_user(4)
+
+if(len(get_all_users()) > 0):
+    for user in get_all_users():  
+        print(f"User: id={user.id}, name={user.name}, email={user.email}")
+else:
+    print("No users found.")   
